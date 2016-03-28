@@ -3,7 +3,6 @@ package controller;
 import model.News;
 import tools.DBManager;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -35,9 +34,6 @@ public class ShowNews extends HttpServlet {
         }
 
         request.setAttribute("newsData", newsData);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");
-
-        dispatcher.forward(request, response);
-        //getServletContext().getRequestDispatcher(url).forward(request,response);
+        getServletContext().getRequestDispatcher(url).forward(request,response);
     }
 }
