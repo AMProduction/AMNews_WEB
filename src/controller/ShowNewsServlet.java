@@ -16,7 +16,7 @@ import java.util.List;
  * Created by snooki on 28.03.16.
  */
 @WebServlet(name = "/show")
-public class ShowNews extends HttpServlet {
+public class ShowNewsServlet extends HttpServlet {
 
     private final DBManager INSTANCE_DB_MANAGER = DBManager.getInstance();
     private List<News> newsData = new ArrayList<>();

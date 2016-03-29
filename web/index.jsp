@@ -6,35 +6,36 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8"%>
 <html>
 <head>
     <title>AMNews</title>
     <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
     <script src="/bootstrap/js/bootstrap.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>requestScope
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/plug-ins/1.10.7/integration/bootstrap/3/dataTables.bootstrap.js"></script>
 </head>
 <body>
 
-<nav id="myNavbar" class="navbar navbar-default navbar-inverse navbar-fixed-top" role="navigation">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbarCollapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="index.jsp">AMNews</a>
-        </div>
-        <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="nav navbar-nav">
-                <li class="active"><a href="http://www.tutorialrepublic.com" target="_blank">Home</a></li>
-                <li><a href="/show" target="_blank">About</a></li>
-                <li><a href="http://www.tutorialrepublic.com/contact-us.php" target="_blank">Contact</a></li>
-            </ul>
-        </div>
+<nav role="navigation" class="navbar navbar-inverse">
+    <div class="navbar-header">
+        <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a href="/show?" class="navbar-brand">AMNews</a>
+    </div>
+    <div id="navbarCollapse" class="collapse navbar-collapse">
+        <ul class="nav navbar-nav">
+            <li class="active"><a href="/edit.jsp">Додати</a></li>
+            <li><a href="/edit.jsp">Редагувати</a></li>
+            <li><a href="#">Видалити</a></li>
+            <li><a href="#">Контакти</a></li>
+        </ul>
     </div>
 </nav>
 
@@ -45,7 +46,7 @@
             <div class="panel-body">
                 <p>Список останніх новин.</p>
             </div>
-            <table class="table table-hover">
+            <table id="newsTable" class="table table-hover">
                 <thead>
                 <tr>
                     <th>№</th>
@@ -55,7 +56,7 @@
                 </thead>
                 <tbody>
                     <c:forEach var="news" items="${requestScope.newsData}">
-                        <tr>
+                        <tr class="clickable-row">
                             <td>${news.id}</td>
                             <td>${news.subject}</td>
                             <td>${news.lastModifiedDate}</td>
@@ -63,6 +64,19 @@
                     </c:forEach>
                 </tbody>
             </table>
+            <script>
+                $(document).ready(function() {
+                    $('#newsTable').dataTable();
+
+                    $('#newsTable').on('click', '.clickable-row', function(event) {
+                        if($(this).hasClass('active')){
+                            $(this).removeClass('active');
+                        } else {
+                            $(this).addClass('active').siblings().removeClass('active');
+                        }
+                    } );
+                });
+            </script>
         </div>
     </div>
 

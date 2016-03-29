@@ -5,13 +5,23 @@
          version="3.1">
     
     <servlet>
-        <servlet-name>ShowNews</servlet-name>
-        <servlet-class>controller.ShowNews</servlet-class>
+        <servlet-name>ShowNewsServlet</servlet-name>
+        <servlet-class>controller.ShowNewsServlet</servlet-class>
     </servlet>
     
     <servlet-mapping>
-        <servlet-name>ShowNews</servlet-name>
+        <servlet-name>ShowNewsServlet</servlet-name>
         <url-pattern>/show</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>AddNewsServlet</servlet-name>
+        <servlet-class>controller.AddNewsServlet</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>AddNewsServlet</servlet-name>
+        <url-pattern>/add</url-pattern>
     </servlet-mapping>
     
     <error-page>
