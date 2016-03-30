@@ -27,18 +27,27 @@ public class DeleteNewsServlet extends HttpServlet {
 
         String idPam = request.getParameter("id");
 
-        int id = Integer.parseInt(idPam);
+        if (idPam != null) {
 
-        if (id > 0) {
-            try {
-                INSTANCE_DB_MANAGER.deleteRecord(id);
-            } catch (SQLException e) {
-                e.printStackTrace();
-                url = "/error_java";
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
+            int id = Integer.parseInt(idPam);
+
+            if (id > 0) {
+                try {
+                    INSTANCE_DB_MANAGER.deleteRecord(id);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                    url = "/error_java";
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                    url = "/error_java";
+                }
+            }
+            else {
                 url = "/error_java";
             }
+        }
+        else{
+            url = "/error_java";
         }
 
         getServletContext().getRequestDispatcher(url).forward(request, response);

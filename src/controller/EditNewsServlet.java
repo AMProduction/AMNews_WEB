@@ -31,21 +31,32 @@ public class EditNewsServlet extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
 
         String idPam = request.getParameter("id");
-        int id = Integer.parseInt(idPam);
 
-        if (id > 0) {
-            try {
-                news = INSTANCE_DB_MANAGER.getOneNews(id);
-            } catch (SQLException e) {
-                e.printStackTrace();
-                url = "/error_java";
-            } catch (ClassNotFoundException e1) {
-                e1.printStackTrace();
+        if (idPam != null) {
+
+            int id = Integer.parseInt(idPam);
+
+            if (id > 0) {
+                try {
+                    news = INSTANCE_DB_MANAGER.getOneNews(id);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                    url = "/error_java";
+                } catch (ClassNotFoundException e1) {
+                    e1.printStackTrace();
+                    url = "/error_java";
+                }
+
+                request.setAttribute("news", news);
+            }
+            else {
                 url = "/error_java";
             }
         }
+        else {
+            url = "/error_java";
+        }
 
-        request.setAttribute("news", news);
         getServletContext().getRequestDispatcher(url).forward(request, response);
     }
 }

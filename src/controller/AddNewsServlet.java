@@ -44,6 +44,9 @@ public class AddNewsServlet extends HttpServlet {
                 url = "/error_java";
             }
         }
+        else {
+            url = "/error_java";
+        }
 
         getServletContext().getRequestDispatcher(url).forward(request, response);
     }

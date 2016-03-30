@@ -27,11 +27,15 @@ public class ShowNewsServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
+
         String url = "/index.jsp";
         try {
             newsData = INSTANCE_DB_MANAGER.getNews();
         } catch (Exception e) {
             e.printStackTrace();
+            url = "/error_java";
         }
 
         request.setAttribute("newsData", newsData);
