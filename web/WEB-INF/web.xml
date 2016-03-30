@@ -24,6 +24,36 @@
         <url-pattern>/add</url-pattern>
     </servlet-mapping>
     
+    <servlet>
+        <servlet-name>DeleteNewsServlet</servlet-name>
+        <servlet-class>controller.DeleteNewsServlet</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>DeleteNewsServlet</servlet-name>
+        <url-pattern>/delete</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>EditNewsServlet</servlet-name>
+        <servlet-class>controller.EditNewsServlet</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>EditNewsServlet</servlet-name>
+        <url-pattern>/edit</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>UpdateNewsServlet</servlet-name>
+        <servlet-class>controller.UpdateNewsServlet</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>UpdateNewsServlet</servlet-name>
+        <url-pattern>/update</url-pattern>
+    </servlet-mapping>
+    
     <error-page>
         <error-code>404</error-code>
         <location>/error_404.jsp</location>

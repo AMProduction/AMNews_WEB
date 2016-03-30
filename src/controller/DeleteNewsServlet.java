@@ -1,6 +1,5 @@
 package controller;
 
-import model.News;
 import tools.DBManager;
 
 import javax.servlet.ServletException;
@@ -12,40 +11,36 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 /**
- * Created by snooki on 29.03.16.
+ * Created by snooki on 30.03.16.
  */
-@WebServlet(name = "/edit")
-public class EditNewsServlet extends HttpServlet {
+@WebServlet(name = "/delete")
+public class DeleteNewsServlet extends HttpServlet {
 
     private final DBManager INSTANCE_DB_MANAGER = DBManager.getInstance();
-    News news = null;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String url = "/edit.jsp";
-
-        request.setCharacterEncoding("UTF-8");
-        response.setCharacterEncoding("UTF-8");
+        String url = "/show";
 
         String idPam = request.getParameter("id");
+
         int id = Integer.parseInt(idPam);
 
         if (id > 0) {
             try {
-                news = INSTANCE_DB_MANAGER.getOneNews(id);
+                INSTANCE_DB_MANAGER.deleteRecord(id);
             } catch (SQLException e) {
                 e.printStackTrace();
                 url = "/error_java";
-            } catch (ClassNotFoundException e1) {
-                e1.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
                 url = "/error_java";
             }
         }
 
-        request.setAttribute("news", news);
         getServletContext().getRequestDispatcher(url).forward(request, response);
     }
 }

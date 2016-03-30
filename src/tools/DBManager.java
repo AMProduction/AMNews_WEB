@@ -184,11 +184,11 @@ public class DBManager {
 
     /**
      * Видаляємо новину з бази
-     * @param aNews	обєкт класу новина
+     * @param id новини
      * @throws SQLException	помилки роботи з базою
      * @throws IOException	зчитування  з файлу (бо юзається метод ConnectionToDB())
      */
-    public void deleteRecord (News aNews) throws SQLException, IOException, ClassNotFoundException {
+    public void deleteRecord (int id) throws SQLException, IOException, ClassNotFoundException {
         PreparedStatement stat;
         final String deleteQuery = "DELETE from \"News\" where id = ?";
 
@@ -196,7 +196,7 @@ public class DBManager {
 
         try {
             stat = connect.prepareStatement(deleteQuery);
-            stat.setInt(1, aNews.getId());
+            stat.setInt(1, id);
 
             stat.executeUpdate();
             connect.commit();
@@ -253,5 +253,41 @@ public class DBManager {
         }
 
         return newsData;
+    }
+
+    public News getOneNews (int aId) throws SQLException, IOException, ClassNotFoundException {
+        News oneNews = null;
+
+        PreparedStatement stat;
+        final String filterQuery = "SELECT * FROM \"News\" WHERE id = ?";
+
+        Connection connect = getConnectionToDB();
+
+        try {
+            stat = connect.prepareStatement(filterQuery);
+            stat.setInt(1, aId);
+
+            ResultSet rs = stat.executeQuery();
+
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String subject = rs.getString("subject");
+                String textPresenter = rs.getString("text_presenter");
+                String textNews = rs.getString("text_news");
+                LocalDateTime createdDate = rs.getTimestamp("created_date").toLocalDateTime();
+                LocalDateTime lastModifiedDate = rs.getTimestamp("last_modified_date").toLocalDateTime();
+
+                oneNews = new News(id, subject, textPresenter, textNews, createdDate, lastModifiedDate);
+            }
+
+            rs.close();
+            stat.close();
+        }
+        finally {
+            if (connect != null)
+                connect.close();
+        }
+
+        return oneNews;
     }
 }

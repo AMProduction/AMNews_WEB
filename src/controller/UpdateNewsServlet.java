@@ -13,10 +13,10 @@ import java.sql.SQLException;
 import java.time.LocalDateTime;
 
 /**
- * Created by snooki on 29.03.16.
+ * Created by snooki on 30.03.16.
  */
-@WebServlet(name = "/add")
-public class AddNewsServlet extends HttpServlet {
+@WebServlet(name = "/update")
+public class UpdateNewsServlet extends HttpServlet {
 
     private final DBManager INSTANCE_DB_MANAGER = DBManager.getInstance();
 
@@ -29,20 +29,25 @@ public class AddNewsServlet extends HttpServlet {
         String subject = request.getParameter("subject");
         String textPresenter = request.getParameter("textPresenter");
         String textNews = request.getParameter("textNews");
-        LocalDateTime createdDate = LocalDateTime.now();
+
+        String idPar = request.getParameter("id");
+        int id = Integer.parseInt(idPar);
+
+        String createdDatePar = request.getParameter("createdDate");
+        LocalDateTime createdDate = LocalDateTime.parse(createdDatePar);
+
         LocalDateTime lastModifiedDate = LocalDateTime.now();
 
-        if (subject != null && textNews != null){
-            News news = new News(subject, textPresenter, textNews, createdDate, lastModifiedDate);
-            try {
-                INSTANCE_DB_MANAGER.addRecord(news);
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-                url = "/error_java";
-            } catch (SQLException e1) {
-                e1.printStackTrace();
-                url = "/error_java";
-            }
+        News updateNews = new News (id, subject, textPresenter, textNews, createdDate, lastModifiedDate);
+
+        try {
+            INSTANCE_DB_MANAGER.updateRecord(updateNews);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            url = "/error_java";
+        } catch (ClassNotFoundException e1) {
+            e1.printStackTrace();
+            url = "/error_java";
         }
 
         getServletContext().getRequestDispatcher(url).forward(request, response);

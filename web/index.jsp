@@ -32,8 +32,8 @@
     <div id="navbarCollapse" class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
             <li class="active"><a href="/edit.jsp">Додати</a></li>
-            <li><a href="/edit.jsp">Редагувати</a></li>
-            <li><a href="#">Видалити</a></li>
+            <li><a class="edit_item" href="#">Редагувати</a></li>
+            <li><a class="delete_item" href="#">Видалити</a></li>
             <li><a href="#">Контакти</a></li>
         </ul>
     </div>
@@ -46,7 +46,7 @@
             <div class="panel-body">
                 <p>Список останніх новин.</p>
             </div>
-            <table id="newsTable" class="table table-hover">
+            <table id="newsTable" class="table table-hover table-condensed">
                 <thead>
                 <tr>
                     <th>№</th>
@@ -75,6 +75,23 @@
                             $(this).addClass('active').siblings().removeClass('active');
                         }
                     } );
+
+                    var idNews = 0;
+                    $('tr').on('click', function() {
+                        idNews = ($('td:first-child', this).text());
+                    });
+
+                    $("a.delete_item").click(function(e){
+                        e.preventDefault();
+                        var url = "/delete?id=" + idNews;
+                        window.location = url;
+                    });
+
+                    $("a.edit_item").click(function(e){
+                        e.preventDefault();
+                        var url = "/edit?id=" + idNews;
+                        window.location = url;
+                    });
                 });
             </script>
         </div>

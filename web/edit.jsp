@@ -5,6 +5,7 @@
   Time: 12:42
   To change this template use File | Settings | File Templates.
 --%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8;" language="java" pageEncoding="UTF-8"%>
 <html>
 <head>
@@ -29,20 +30,22 @@
             </ul>
             <div class="tab-content">
                 <div id="subjectNews" class="tab-pane fade in active">
-                    <textarea class="form-control" rows="15" name="subject" required></textarea>
+                    <textarea class="form-control" rows="15" name="subject" required>${news.subject}</textarea>
                 </div>
                 <div id="textPresenterNews" class="tab-pane fade">
-                    <textarea class="form-control" rows="15" name="textPresenter"></textarea>
+                    <textarea class="form-control" rows="15" name="textPresenter">${news.textPresenter}</textarea>
                 </div>
                 <div id="textNewsNews" class="tab-pane fade">
-                    <textarea class="form-control" rows="15" name="textNews" required></textarea>
+                    <textarea class="form-control" rows="15" name="textNews" required>${news.textNews}</textarea>
                 </div>
             </div>
+            <input type="text" hidden name="id" value="${news.id}">
+            <input type="text" hidden name="createdDate" value="${news.createdDate}">
         </div>
         <div class="panel-footer clearfix">
             <div class="pull-left">
                 <button type="submit" class="btn btn-primary" formaction="add">Зберегти</button>
-                <button type="submit" class="btn btn-info">Оновити</button>
+                <button type="submit" class="btn btn-info" formaction="update">Оновити</button>
             </div>
         </div>
         </form>
