@@ -11,6 +11,7 @@
 <head>
     <title>AMNews</title>
 
+    <link href="bootstrap/css/navbar.css" rel="stylesheet">
     <link href="bootstrap/css/table.css" rel="stylesheet">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="bootstrap/css/footer_social.css" rel="stylesheet">
@@ -20,13 +21,16 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-1.12.2.js"></script>
     <script src="bootstrap/js/bootstrap.js"></script>
+    <script src="bootstrap/js/filter.js"></script>
+    <script src="bootstrap/js/table.js"></script>
+    <script src="bootstrap/js/navbar.js"></script>
 </head>
 <body>
 
-<nav role="navigation" class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container">
+<nav id="header" role="navigation" class="navbar navbar-fixed-top">
+    <div id="header-container" class="container navbar-container">
         <div class="navbar-header">
-            <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -72,79 +76,9 @@
                     </c:forEach>
                 </tbody>
             </table>
-            <script>
-                $(document).ready(function() {
-                    $('.filterable .btn-filter').click(function(){
-                        var $panel = $(this).parents('.filterable'),
-                                $filters = $panel.find('.filters input'),
-                                $tbody = $panel.find('.table tbody');
-                        if ($filters.prop('disabled') == true) {
-                            $filters.prop('disabled', false);
-                            $filters.first().focus();
-                        } else {
-                            $filters.val('').prop('disabled', true);
-                            $tbody.find('.no-result').remove();
-                            $tbody.find('tr').show();
-                        }
-                    });
-
-                    $('.filterable .filters input').keyup(function(e){
-                        /* Ignore tab key */
-                        var code = e.keyCode || e.which;
-                        if (code == '9') return;
-                        /* Useful DOM data and selectors */
-                        var $input = $(this),
-                                inputContent = $input.val().toLowerCase(),
-                                $panel = $input.parents('.filterable'),
-                                column = $panel.find('.filters th').index($input.parents('th')),
-                                $table = $panel.find('.table'),
-                                $rows = $table.find('tbody tr');
-                        /* Dirtiest filter function ever ;) */
-                        var $filteredRows = $rows.filter(function(){
-                            var value = $(this).find('td').eq(column).text().toLowerCase();
-                            return value.indexOf(inputContent) === -1;
-                        });
-                        /* Clean previous no-result if exist */
-                        $table.find('tbody .no-result').remove();
-                        /* Show all rows, hide filtered ones (never do that outside of a demo ! xD) */
-                        $rows.show();
-                        $filteredRows.hide();
-                        /* Prepend no-result row if all rows are filtered */
-                        if ($filteredRows.length === $rows.length) {
-                            $table.find('tbody').prepend($('<tr class="no-result text-center"><td colspan="'+ $table.find('.filters th').length +'">No result found</td></tr>'));
-                        }
-                    });
-
-                    $('#newsTable').on('click', '.clickable-row', function(event) {
-                        if($(this).hasClass('bg-info')){
-                            $(this).removeClass('bg-info');
-                        } else {
-                            $(this).addClass('bg-info').siblings().removeClass('bg-info');
-                        }
-                    } );
-
-                    var idNews = 0;
-                    $('tr').on('click', function() {
-                        idNews = ($('td:first-child', this).text());
-                    });
-
-                    $("a.delete_item").click(function(e){
-                        e.preventDefault();
-                        var url = "/delete?id=" + idNews;
-                        window.location = url;
-                    });
-
-                    $("a.edit_item").click(function(e){
-                        e.preventDefault();
-                        var url = "/edit?id=" + idNews;
-                        window.location = url;
-                    });
-                });
-            </script>
         </div>
     </div>
 
-    <hr>
     <div class="row">
         <div class="col-xs-12">
             <footer>
