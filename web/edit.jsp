@@ -10,14 +10,14 @@
 <html>
 <head>
     <title>Редагування</title>
-    <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="/bootstrap/js/bootstrap.min.js"></script>
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
 </head>
 <body>
 <div class="container">
-    <div class="panel panel-default">
+    <div class="panel panel-primary">
         <div class="panel-heading">
             <h1 class="panel-title">Редагування новини</h1>
         </div>
