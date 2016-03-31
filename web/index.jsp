@@ -40,7 +40,7 @@
         </div>
         <div id="navbarCollapse" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="edit.jsp">Додати</a></li>
+                <li class="active"><a href="edit.jsp?hideUpdate=1&hideSave=0">Додати</a></li>
                 <li><a class="edit_item" href="#">Редагувати</a></li>
                 <li><a class="delete_item" href="#">Видалити</a></li>
                 <li><a href="contact.jsp">Контакти</a></li>
@@ -68,7 +68,8 @@
                 </thead>
                 <tbody>
                     <c:forEach var="news" items="${requestScope.newsData}">
-                        <tr class="clickable-row" style="cursor: pointer">
+                        <tr class="clickable-row" style="cursor: pointer"
+                            data-toggle="tooltip" data-placement="top" title="${news.textNews}">
                             <td>${news.id}</td>
                             <td>${news.subject}</td>
                             <td>${news.lastModifiedDate}</td>
@@ -96,7 +97,9 @@
                     GregorianCalendar currentDate = new GregorianCalendar();
                     int currentYear = currentDate.get(Calendar.YEAR);
                 %>
-                <p>&copy; Copyright <%= currentYear%> AMProduction</p>
+                <div class="text-center center-block">
+                    <p>&copy; Copyright <%= currentYear%> AMProduction</p>
+                </div>
             </footer>
         </div>
     </div>

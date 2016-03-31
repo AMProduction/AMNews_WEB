@@ -12,6 +12,7 @@ footer {
 /*
  * Custom styles
  */
+
 .navbar-brand {
     font-size: 24px;
 }
@@ -21,9 +22,9 @@ footer {
 }
 
 .navbar.navbar-fixed-top.fixed-theme {
-    background-color: #222;
-    border-color: #080808;
-    box-shadow: 0 0 5px rgba(0,0,0,.8);
+    background-color: #e0dddd;
+    border-color: #bdbbc4;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
 }
 
 .navbar-brand.fixed-theme {

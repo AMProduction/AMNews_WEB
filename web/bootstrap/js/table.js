@@ -23,7 +23,7 @@ $(function() {
 
     $("a.edit_item").click(function(e){
         e.preventDefault();
-        var url = "/edit?id=" + idNews;
+        var url = "/edit?hideUpdate=0&hideSave=1&id=" + idNews;
         window.location = url;
     });
 })

@@ -12,8 +12,10 @@
     <title>Редагування</title>
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
     <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="bootstrap/js/hideButton.js"></script>
 </head>
 <body>
 <div class="container">
@@ -44,8 +46,8 @@
         </div>
         <div class="panel-footer clearfix">
             <div class="pull-left">
-                <button type="submit" class="btn btn-primary" formaction="add">Зберегти</button>
-                <button type="submit" class="btn btn-info" formaction="update">Оновити</button>
+                <button id="save" type="submit" class="btn btn-primary" formaction="add">Зберегти</button>
+                <button id="update" type="submit" class="btn btn-info" formaction="update">Оновити</button>
             </div>
         </div>
         </form>

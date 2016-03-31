@@ -4,7 +4,6 @@ import model.News;
 
 import java.io.*;
 import java.sql.*;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Properties;
@@ -39,6 +38,9 @@ public class DBManager {
         String driver = props.getProperty("jdbc.drivers");
         if (driver != null)
             System.setProperty("jdbc.drivers", driver);
+        else {
+            throw new RuntimeException();
+        }
         url = props.getProperty("jdbc.url");
         username = props.getProperty("jdbc.username");
         password = props.getProperty("jdbc.password");
@@ -212,49 +214,13 @@ public class DBManager {
     }
 
     /**
-     * Шукаємо новину у базі
-     * @param date	дата створення новини
-     * @return	newsData колекцію новин
+     * Повертаємо одну новину за її id
+     * @param aId айді новини
+     * @return об'єкт типу News
      * @throws SQLException
      * @throws IOException
+     * @throws ClassNotFoundException
      */
-    public ArrayList<News> filterNews (LocalDate date) throws SQLException, IOException, ClassNotFoundException {
-        ArrayList<News> newsData = new ArrayList();
-
-        PreparedStatement stat;
-        final String filterQuery = "SELECT * FROM \"News\" WHERE "
-                + "created_date::date = ?";
-
-        Connection connect = getConnectionToDB();
-
-        try {
-            stat = connect.prepareStatement(filterQuery);
-            stat.setDate(1, Date.valueOf(date));
-
-            ResultSet rs = stat.executeQuery();
-
-            while (rs.next()) {
-                int id = rs.getInt("id");
-                String subject = rs.getString("subject");
-                String textPresenter = rs.getString("text_presenter");
-                String textNews = rs.getString("text_news");
-                LocalDateTime createdDate = rs.getTimestamp("created_date").toLocalDateTime();
-                LocalDateTime lastModifiedDate = rs.getTimestamp("last_modified_date").toLocalDateTime();
-
-                newsData.add(new News(id, subject, textPresenter, textNews, createdDate, lastModifiedDate));
-            }
-
-            rs.close();
-            stat.close();
-        }
-        finally {
-            if (connect != null)
-                connect.close();
-        }
-
-        return newsData;
-    }
-
     public News getOneNews (int aId) throws SQLException, IOException, ClassNotFoundException {
         News oneNews = null;
 
