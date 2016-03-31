@@ -10,6 +10,8 @@
 <html>
 <head>
     <title>Редагування</title>
+    <link href="bootstrap/css/footer_social.css" rel="stylesheet">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
 
@@ -53,5 +55,5 @@
         </form>
     </div>
 </div>
-</body>
-</html>
+
+<c:import url="footer.jsp"/>
