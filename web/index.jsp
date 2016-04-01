@@ -74,7 +74,7 @@
                             <td>${news.id}</td>
                             <td>${news.subject}</td>
                             <script>
-                                var formattedDate = moment("${news.lastModifiedDate}").format("h:mm:ss DD-MM-YYYY");
+                                var formattedDate = moment("${news.lastModifiedDate}").format("H:mm:ss DD/MM/YYYY");
                                 document.write('<td>' + formattedDate + '</td>');
                             </script>
                         </tr>
@@ -83,5 +83,6 @@
             </table>
         </div>
     </div>
+</div>
 
 <c:import url="footer.jsp"/>
