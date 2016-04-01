@@ -20,6 +20,7 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-1.12.2.js"></script>
+    <script src="http://momentjs.com/downloads/moment-with-locales.js"></script>
     <script src="bootstrap/js/bootstrap.js"></script>
     <script src="bootstrap/js/filter.js"></script>
     <script src="bootstrap/js/table.js"></script>
@@ -72,7 +73,10 @@
                             data-toggle="tooltip" data-placement="top" title="${news.textNews}">
                             <td>${news.id}</td>
                             <td>${news.subject}</td>
-                            <td>${news.lastModifiedDate}</td>
+                            <script>
+                                var formattedDate = moment("${news.lastModifiedDate}").format("h:mm:ss DD-MM-YYYY");
+                                document.write('<td>' + formattedDate + '</td>');
+                            </script>
                         </tr>
                     </c:forEach>
                 </tbody>
