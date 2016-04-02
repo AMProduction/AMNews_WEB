@@ -22,13 +22,10 @@ public class RequestLoggingFilter implements Filter {
         HttpServletRequest request = (HttpServletRequest) req;
         HttpSession session = request.getSession();
 
-        String userName = request.getParameter("login");
-
-        if ( (userName == null) || (userName.equals(""))) {
-            userName = (String) session.getAttribute("userName");
+        if (session.isNew()){
+            String userName = request.getParameter("login");
+            session.setAttribute("userName", userName);
         }
-
-        session.setAttribute("userName", userName);
 
         chain.doFilter(request, resp);
     }

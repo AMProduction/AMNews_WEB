@@ -21,8 +21,11 @@ public class LogOutServlet extends HttpServlet {
 
         String url = "/login.jsp";
 
-        HttpSession session = request.getSession();
-        session.invalidate();
+        HttpSession session = request.getSession(false);
+
+        if (session != null){
+            session.invalidate();
+        }
 
         getServletContext().getRequestDispatcher(url).forward(request,response);
     }
