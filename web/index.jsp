@@ -46,6 +46,10 @@
                 <li><a class="delete_item" href="#">Видалити</a></li>
                 <li><a href="contact.jsp">Контакти</a></li>
             </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a>Вітаємо, ${sessionScope.userName}</a></li>
+                <li><a href="/logout">Вихід</a></li>
+            </ul>
         </div>
     </div>
 </nav>
