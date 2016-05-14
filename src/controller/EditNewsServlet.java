@@ -4,7 +4,6 @@ import model.News;
 import tools.DBManager;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,7 +13,6 @@ import java.sql.SQLException;
 /**
  * Created by snooki on 29.03.16.
  */
-@WebServlet(name = "/edit")
 public class EditNewsServlet extends HttpServlet {
 
     private final DBManager INSTANCE_DB_MANAGER = DBManager.getInstance();

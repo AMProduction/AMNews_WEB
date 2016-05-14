@@ -3,7 +3,6 @@ package controller;
 import tools.DBManager;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,7 +12,6 @@ import java.sql.SQLException;
 /**
  * Created by snooki on 30.03.16.
  */
-@WebServlet(name = "/delete")
 public class DeleteNewsServlet extends HttpServlet {
 
     private final DBManager INSTANCE_DB_MANAGER = DBManager.getInstance();

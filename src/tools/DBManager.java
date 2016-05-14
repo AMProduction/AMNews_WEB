@@ -3,6 +3,8 @@ package tools;
 import model.News;
 
 import java.io.*;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.sql.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -25,22 +27,20 @@ public class DBManager {
         String sDirSeparator = System.getProperty("file.separator");
         File currentDir = new File(".");
         try{
-            String sFilePath = currentDir.getCanonicalPath() + sDirSeparator + sFileName;
-            try (InputStream in = new BufferedInputStream(new FileInputStream(sFilePath))) {
+            //String sFilePath = currentDir.getCanonicalPath() + sDirSeparator + sFileName;
+            Path sFilePath = Paths.get(currentDir.getCanonicalPath(), sDirSeparator, sFileName);
+            try (InputStream in = new BufferedInputStream(new FileInputStream(sFilePath.toString()))) {
                 props.load(in);
             }
         }
         catch (IOException e)
         {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
 
         String driver = props.getProperty("jdbc.drivers");
-        if (driver != null)
-            System.setProperty("jdbc.drivers", driver);
-        else {
-            throw new RuntimeException();
-        }
+        System.setProperty("jdbc.drivers", driver);
+
         url = props.getProperty("jdbc.url");
         username = props.getProperty("jdbc.username");
         password = props.getProperty("jdbc.password");

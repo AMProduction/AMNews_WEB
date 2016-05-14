@@ -1,7 +1,6 @@
 package controller;
 
 import javax.servlet.*;
-import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
@@ -9,7 +8,6 @@ import java.io.IOException;
 /**
  * Created by snooki on 02.04.16.
  */
-@WebFilter(filterName = "RequestLoggingFilter")
 public class RequestLoggingFilter implements Filter {
     public void destroy() {
     }
