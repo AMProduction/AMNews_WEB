@@ -34,21 +34,25 @@ public class EditNewsServlet extends HttpServlet {
 
             int id = Integer.parseInt(idPam);
 
-            if (id > 0) {
-                try {
-                    news = INSTANCE_DB_MANAGER.getOneNews(id);
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                    url = "/error_java";
-                } catch (ClassNotFoundException e1) {
-                    e1.printStackTrace();
-                    url = "/error_java";
-                }
-
-                request.setAttribute("news", news);
+            if (id == 0) {
+                url = "/show";
             }
             else {
-                url = "/error_java";
+                if (id > 0) {
+                    try {
+                        news = INSTANCE_DB_MANAGER.getOneNews(id);
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                        url = "/error_java";
+                    } catch (ClassNotFoundException e1) {
+                        e1.printStackTrace();
+                        url = "/error_java";
+                    }
+
+                    request.setAttribute("news", news);
+                } else {
+                    url = "/error_java";
+                }
             }
         }
         else {

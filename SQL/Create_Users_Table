@@ -1,0 +1,19 @@
+BEGIN;
+CREATE SEQUENCE auto_id_users
+INCREMENT 1
+MINVALUE 1
+MAXVALUE 9223372036854775807
+START 1
+CACHE 1;
+CREATE TABLE "Users"
+(
+  id bigint NOT NULL DEFAULT nextval('auto_id_users'::regclass),
+  login character varying NOT NULL,
+  password character varying NOT NULL,
+  last_name character varying NOT NULL,
+  first_name character varying NOT NULL,
+  "position" character varying NOT NULL,
+  access_level bigint NOT NULL,
+  CONSTRAINT "Users_pkey" PRIMARY KEY (id)
+);
+COMMIT;

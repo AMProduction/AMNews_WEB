@@ -1,6 +1,7 @@
 package tools;
 
 import model.News;
+import model.User;
 
 import java.io.*;
 import java.nio.file.Path;
@@ -255,5 +256,49 @@ public class DBManager {
         }
 
         return oneNews;
+    }
+
+    /**
+     *
+     */
+
+    public User getUser (String aLogin, String aPassword)
+            throws SQLException, IOException, ClassNotFoundException {
+        User userData = null;
+
+        PreparedStatement stat;
+        final String searchQuery = "SELECT * FROM \"Users\" WHERE login = ? AND password = ?";
+
+        Connection connect = getConnectionToDB();
+
+        try {
+            stat = connect.prepareStatement(searchQuery);
+            stat.setString(1, aLogin);
+            stat.setString(2, aPassword);
+
+            ResultSet rs = stat.executeQuery();
+
+            while (rs.next()){
+                int id = rs.getInt("id");
+                String login = rs.getString("login");
+                String password = rs.getString("password");
+                String lastName = rs.getString("last_name");
+                String firstName = rs.getString("first_name");
+                String position = rs.getString("position");
+                int accessLevel = rs.getInt("access_level");
+
+                userData = new User(id, login, password, lastName, firstName,
+                        position, accessLevel);
+            }
+
+            rs.close();
+            stat.close();
+        }
+        finally {
+            if (connect != null)
+                connect.close();
+        }
+
+        return userData;
     }
 }
