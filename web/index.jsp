@@ -69,6 +69,7 @@
                     <th><input type="text" class="form-control" placeholder="№" disabled></th>
                     <th><input type="text" class="form-control" placeholder="Тема" disabled></th>
                     <th><input type="text" class="form-control" placeholder="Востаннє змінено" disabled></th>
+                    <th><input type="text" class="form-control" placeholder="Автор" disabled></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -81,6 +82,7 @@
                                 var formattedDate = moment("${news.lastModifiedDate}").format("H:mm:ss DD/MM/YYYY");
                                 document.write('<td>' + formattedDate + '</td>');
                             </script>
+                            <td>${news.author}</td>
                         </tr>
                     </c:forEach>
                 </tbody>

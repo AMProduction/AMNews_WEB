@@ -7,6 +7,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
@@ -23,15 +24,17 @@ public class AddNewsServlet extends HttpServlet {
 
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
+        HttpSession session = request.getSession();
 
         String subject = request.getParameter("subject");
         String textPresenter = request.getParameter("textPresenter");
         String textNews = request.getParameter("textNews");
         LocalDateTime createdDate = LocalDateTime.now();
         LocalDateTime lastModifiedDate = LocalDateTime.now();
+        String author = (String)session.getAttribute("userName");
 
         if (subject != null && textNews != null){
-            News news = new News(subject, textPresenter, textNews, createdDate, lastModifiedDate);
+            News news = new News(subject, textPresenter, textNews, createdDate, lastModifiedDate, author);
             try {
                 INSTANCE_DB_MANAGER.addRecord(news);
             } catch (ClassNotFoundException e) {

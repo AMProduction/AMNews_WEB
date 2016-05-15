@@ -1,5 +1,5 @@
 /**
- *	@version 1.0 2016-03
+ *	@version 1.5 2016-05
  *	@author Andrii Malchyk
  */
 
@@ -15,6 +15,7 @@ public class News implements Serializable{
     private String textNews;
     private LocalDateTime createdDate;
     private LocalDateTime lastModifiedDate;
+    private String author;
 
     /**
      * Конструктор JavaBean
@@ -28,9 +29,10 @@ public class News implements Serializable{
         this.textNews = "";
         this.createdDate = null;
         this.lastModifiedDate = null;
+        this.author = "";
     }
     /**
-     * Конструктор для створення нової новини
+     * Конструктор для редагування існуючої новини
      * @param id	номер
      * @param subject	тема новини
      * @param textPresenter	текст диктора (підводка)
@@ -39,7 +41,7 @@ public class News implements Serializable{
      * @param lastModifiedDate	дата останньої модифікації
      */
     public News(int id, String subject, String textPresenter, String textNews,
-                LocalDateTime createdDate, LocalDateTime lastModifiedDate)
+                LocalDateTime createdDate, LocalDateTime lastModifiedDate, String author)
     {
         this.id = id;
         this.subject = subject;
@@ -47,10 +49,11 @@ public class News implements Serializable{
         this.textNews = textNews;
         this.createdDate = createdDate;
         this.lastModifiedDate = lastModifiedDate;
+        this.author = author;
     }
 
     /**
-     * Конструктор для редагування існуючої новини
+     * Конструктор для створення нової новини
      * @param subject	тема новини
      * @param textPresenter текст диктора (підводка)
      * @param textNews текст новини
@@ -58,13 +61,14 @@ public class News implements Serializable{
      * @param lastModifiedDate	дата останньої модифікації
      */
     public News(String subject, String textPresenter, String textNews,
-                LocalDateTime createdDate, LocalDateTime lastModifiedDate)
+                LocalDateTime createdDate, LocalDateTime lastModifiedDate, String author)
     {
         this.subject = subject;
         this.textPresenter = textPresenter;
         this.textNews = textNews;
         this.createdDate = createdDate;
         this.lastModifiedDate = lastModifiedDate;
+        this.author = author;
 
         this.id = 0;
     }
@@ -115,5 +119,13 @@ public class News implements Serializable{
 
     public void setLastModifiedDate(LocalDateTime lastModifiedDate) {
         this.lastModifiedDate = lastModifiedDate;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
     }
 }

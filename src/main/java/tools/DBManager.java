@@ -96,8 +96,9 @@ public class DBManager {
                 String textNews = rs.getString("text_news");
                 LocalDateTime createdDate = rs.getTimestamp("created_date").toLocalDateTime();
                 LocalDateTime lastModifiedDate = rs.getTimestamp("last_modified_date").toLocalDateTime();
+                String author = rs.getString("author");
 
-                newsData.add(new News(id, subject, textPresenter, textNews, createdDate, lastModifiedDate));
+                newsData.add(new News(id, subject, textPresenter, textNews, createdDate, lastModifiedDate, author));
             }
             rs.close();
             stmt.close();
@@ -119,8 +120,8 @@ public class DBManager {
     public void addRecord (News aNews) throws SQLException, IOException, ClassNotFoundException {
         PreparedStatement stat;
         final String insertQuery =
-                "INSERT INTO \"News\" (subject, text_presenter, text_news, created_date, last_modified_date)"
-                        + "VALUES (?, ?, ?, ?, ?)";
+                "INSERT INTO \"News\" (subject, text_presenter, text_news, created_date, last_modified_date, author)"
+                        + "VALUES (?, ?, ?, ?, ?, ?)";
 
         Connection connect = getConnectionToDB();
 
@@ -131,6 +132,7 @@ public class DBManager {
             stat.setString(3, aNews.getTextNews());
             stat.setTimestamp(4, Timestamp.valueOf(aNews.getCreatedDate()));
             stat.setTimestamp(5, Timestamp.valueOf(aNews.getLastModifiedDate()));
+            stat.setString(6, aNews.getAuthor());
 
             stat.executeUpdate();
 
@@ -243,8 +245,9 @@ public class DBManager {
                 String textNews = rs.getString("text_news");
                 LocalDateTime createdDate = rs.getTimestamp("created_date").toLocalDateTime();
                 LocalDateTime lastModifiedDate = rs.getTimestamp("last_modified_date").toLocalDateTime();
+                String author = rs.getString("author");
 
-                oneNews = new News(id, subject, textPresenter, textNews, createdDate, lastModifiedDate);
+                oneNews = new News(id, subject, textPresenter, textNews, createdDate, lastModifiedDate, author);
             }
 
             rs.close();
@@ -259,9 +262,14 @@ public class DBManager {
     }
 
     /**
-     *
+     * Отримуємо дані юзера
+     * @param aLogin логін
+     * @param aPassword пароль
+     * @return повертаємо обєкт Юзер
+     * @throws SQLException
+     * @throws IOException
+     * @throws ClassNotFoundException
      */
-
     public User getUser (String aLogin, String aPassword)
             throws SQLException, IOException, ClassNotFoundException {
         User userData = null;

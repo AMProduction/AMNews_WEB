@@ -7,6 +7,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
@@ -23,10 +24,12 @@ public class UpdateNewsServlet extends HttpServlet {
 
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
+        HttpSession session = request.getSession();
 
         String subject = request.getParameter("subject");
         String textPresenter = request.getParameter("textPresenter");
         String textNews = request.getParameter("textNews");
+        String author = (String)session.getAttribute("userName");
 
         String idPar = request.getParameter("id");
         String createdDatePar = request.getParameter("createdDate");
@@ -37,7 +40,7 @@ public class UpdateNewsServlet extends HttpServlet {
 
             LocalDateTime lastModifiedDate = LocalDateTime.now();
 
-            News updateNews = new News(id, subject, textPresenter, textNews, createdDate, lastModifiedDate);
+            News updateNews = new News(id, subject, textPresenter, textNews, createdDate, lastModifiedDate, author);
 
             try {
                 INSTANCE_DB_MANAGER.updateRecord(updateNews);
