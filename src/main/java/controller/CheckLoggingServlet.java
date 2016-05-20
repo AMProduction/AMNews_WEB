@@ -17,6 +17,7 @@ import java.sql.SQLException;
 public class CheckLoggingServlet extends HttpServlet {
 
     private final DBManager INSTANCE_DB_MANAGER = DBManager.getInstance();
+
     User userData = null;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -26,7 +27,7 @@ public class CheckLoggingServlet extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
 
         HttpSession session = request.getSession();
-        session.setAttribute("loggingStatus", "0");
+        session.setAttribute("adminPrivileges", "0");
 
         if (session.isNew()){
             String login = request.getParameter("login");
@@ -36,16 +37,18 @@ public class CheckLoggingServlet extends HttpServlet {
                 userData = INSTANCE_DB_MANAGER.getUser(login, password);
             } catch (SQLException e) {
                 e.printStackTrace();
-                url = "/error_java";
+                url = "/error/error_java";
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
-                url = "/error_java";
+                url = "/error/error_java";
             }
 
             if (userData != null)
             {
                 session.setAttribute("userName", userData.getLastName()+ " " + userData.getFirstName());
-                session.setAttribute("loggingStatus", "1");
+                if (userData.getAccessLevel() == 1){
+                    session.setAttribute("adminPrivileges", "1");
+                }
             }
             else {
                 session.invalidate();

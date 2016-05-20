@@ -1,4 +1,4 @@
-package controller;
+package controller.news;
 
 import model.News;
 import tools.DBManager;
@@ -46,14 +46,14 @@ public class UpdateNewsServlet extends HttpServlet {
                 INSTANCE_DB_MANAGER.updateRecord(updateNews);
             } catch (SQLException e) {
                 e.printStackTrace();
-                url = "/error_java";
+                url = "/error/error_java";
             } catch (ClassNotFoundException e1) {
                 e1.printStackTrace();
-                url = "/error_java";
+                url = "/error/error_java";
             }
         }
         else {
-            url = "/error_java";
+            url = "/error/error_java";
         }
 
         getServletContext().getRequestDispatcher(url).forward(request, response);

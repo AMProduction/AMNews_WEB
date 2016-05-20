@@ -1,6 +1,6 @@
-package controller;
+package controller.users;
 
-import model.News;
+import model.User;
 import tools.DBManager;
 
 import javax.servlet.ServletException;
@@ -11,13 +11,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by snooki on 28.03.16.
- */
-public class ShowNewsServlet extends HttpServlet {
+public class ShowUsersServlet extends HttpServlet {
 
     private final DBManager INSTANCE_DB_MANAGER = DBManager.getInstance();
-    private List<News> newsData = new ArrayList<>();
+    private List<User> usersData = new ArrayList<>();
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request, response);
@@ -28,15 +25,15 @@ public class ShowNewsServlet extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
 
-        String url = "/index.jsp";
+        String url = "/admin/admin.jsp";
         try {
-            newsData = INSTANCE_DB_MANAGER.getNews();
+            usersData = INSTANCE_DB_MANAGER.getUsers();
         } catch (Exception e) {
             e.printStackTrace();
-            url = "/error_java";
+            url = "/error/error_java";
         }
 
-        request.setAttribute("newsData", newsData);
+        request.setAttribute("usersData", usersData);
         getServletContext().getRequestDispatcher(url).forward(request,response);
     }
 }

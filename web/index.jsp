@@ -11,10 +11,8 @@
 <head>
     <title>AMNews</title>
 
-    <link href="bootstrap/css/navbar.css" rel="stylesheet">
-    <link href="bootstrap/css/table.css" rel="stylesheet">
-    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
-    <link href="bootstrap/css/footer_social.css" rel="stylesheet">
+    <link href="design/css/navbar.css" rel="stylesheet">
+    <link href="design/css/table.css" rel="stylesheet">
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
 
@@ -22,9 +20,9 @@
     <script src="https://code.jquery.com/jquery-1.12.2.js"></script>
     <script src="http://momentjs.com/downloads/moment-with-locales.js"></script>
     <script src="bootstrap/js/bootstrap.js"></script>
-    <script src="bootstrap/js/filter.js"></script>
-    <script src="bootstrap/js/table.js"></script>
-    <script src="bootstrap/js/navbar.js"></script>
+    <script src="design/js/filter.js"></script>
+    <script src="design/js/table.js"></script>
+    <script src="design/js/navbar.js"></script>
 </head>
 <body>
 
@@ -37,18 +35,24 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a href="/show?" class="navbar-brand">AMNews</a>
+            <a href="/show?" class="navbar-brand"><span class="glyphicon glyphicon-home"></span> AMNews</a>
         </div>
         <div id="navbarCollapse" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="edit.jsp?hideUpdate=1&hideSave=0">Додати</a></li>
-                <li><a class="edit_item" href="#">Редагувати</a></li>
-                <li><a class="delete_item" href="#">Видалити</a></li>
-                <li><a href="contact.jsp">Контакти</a></li>
+                <li class="active"><a href="edit.jsp?hideUpdate=1&hideSave=0">
+                    <span class="glyphicon glyphicon-plus"></span> Додати</a></li>
+                <li><a class="edit_item" href="#">
+                    <span class="glyphicon glyphicon-pencil"></span> Редагувати</a></li>
+                <li><a class="delete_item" href="#">
+                    <span class="glyphicon glyphicon-trash"></span> Видалити</a></li>
+                <li><a href="tools/contact.jsp">
+                    <span class="glyphicon glyphicon-envelope"></span> Контакти</a></li>
+                <li><a href="/users">
+                    <span class="glyphicon glyphicon-wrench"></span> Адмін</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a>Вітаємо, ${sessionScope.userName}</a></li>
-                <li><a href="/logout">Вихід</a></li>
+                <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Вихід</a></li>
             </ul>
         </div>
     </div>
@@ -60,7 +64,7 @@
             <div class="panel-heading">
                 <h3 class="panel-title">Вас вітає система верстки новин AMNews</h3>
                 <div class="pull-right">
-                    <button class="btn btn-default btn-xs btn-filter"><span class="glyphicon glyphicon-filter"></span> Filter</button>
+                    <button class="btn btn-default btn-xs btn-filter"><span class="glyphicon glyphicon-filter"></span> Пошук</button>
                 </div>
             </div>
             <table id="newsTable" class="table table-hover table-condensed">
@@ -91,4 +95,4 @@
     </div>
 </div>
 
-<c:import url="footer.jsp"/>
+<c:import url="tools/footer.jsp"/>

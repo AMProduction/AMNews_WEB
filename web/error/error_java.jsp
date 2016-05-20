@@ -10,12 +10,10 @@
 <html>
 <head>
     <title>Java Error</title>
-    <link href="bootstrap/css/footer_social.css" rel="stylesheet">
-    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
-    <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
 
-    <script src="/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../bootstrap/js/bootstrap.min.js"></script>
 </head>
 <body>
 <div class="container">
@@ -32,4 +30,4 @@
     </div>
 </div>
 
-<c:import url="footer.jsp"/>
+<c:import url="../tools/footer.jsp"/>

@@ -9,7 +9,7 @@ import java.io.IOException;
 /**
  * Created by snooki on 02.04.16.
  */
-public class RequestLoggingFilter implements Filter {
+public class RequestAdminPrivilegesFilter implements Filter {
     public void destroy() {
     }
 
@@ -23,13 +23,15 @@ public class RequestLoggingFilter implements Filter {
 
         HttpSession session = request.getSession();
 
-        String status = (String)session.getAttribute("loggingStatus");
-        if (!"1".equals(status)){
-            session.invalidate();
-            response.sendRedirect("/login.jsp");
+        Integer adminPrivileges = Integer.parseInt(session.getAttribute("adminPrivileges").toString());
+        if (adminPrivileges != null){
+            if (adminPrivileges != 1){
+                response.sendRedirect("/error/error_401.jsp");
+            }
+            else{
+                chain.doFilter(request, resp);
+            }
         }
-
-        chain.doFilter(request, resp);
     }
 
     public void init(FilterConfig config) throws ServletException {

@@ -262,7 +262,7 @@ public class DBManager {
     }
 
     /**
-     * Отримуємо дані юзера
+     * Отримуємо дані юзера (для аутентифікації)
      * @param aLogin логін
      * @param aPassword пароль
      * @return повертаємо обєкт Юзер
@@ -308,5 +308,198 @@ public class DBManager {
         }
 
         return userData;
+    }
+
+    /**
+     * Отримуємо список користувачів з бази
+     * @return колекцію юзерів
+     * @throws SQLException
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
+    public ArrayList<User> getUsers() throws SQLException, IOException, ClassNotFoundException {
+        ArrayList<User> usersData = new ArrayList<>();
+        Statement stmt;
+        Connection connect = getConnectionToDB();
+
+        try {
+            stmt = connect.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM \"Users\"");
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String login = rs.getString("login");
+                String password = rs.getString("password");
+                String lastName = rs.getString("last_name");
+                String firstName = rs.getString("first_name");
+                String position = rs.getString("position");
+                int accessLevel = rs.getInt("access_level");
+
+                usersData.add(new User(id, login, password, lastName, firstName,
+                        position, accessLevel));
+            }
+            rs.close();
+            stmt.close();
+        }
+        finally {
+            if (connect != null)
+                connect.close();
+        }
+
+        return usersData;
+    }
+
+    /**
+     * Додаємо користувача до бази
+     * @param aUser
+     * @throws SQLException
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
+    public void addUser (User aUser) throws SQLException, IOException, ClassNotFoundException {
+        PreparedStatement stat;
+        final String insertQuery =
+                "INSERT INTO \"Users\" (login, password, last_name, first_name, position, access_level)"
+                        + "VALUES (?, ?, ?, ?, ?, ?)";
+
+        Connection connect = getConnectionToDB();
+
+        try{
+            stat = connect.prepareStatement(insertQuery);
+            stat.setString(1, aUser.getLogin());
+            stat.setString(2, aUser.getPassword());
+            stat.setString(3, aUser.getLastName());
+            stat.setString(4, aUser.getFirstName());
+            stat.setString(5, aUser.getPosition());
+            stat.setInt(6, aUser.getAccessLevel());
+
+            stat.executeUpdate();
+
+            connect.commit();
+            stat.close();
+        }
+        catch (SQLException e) {
+            connect.rollback();
+            throw e;
+        }
+        finally {
+            if (connect != null)
+                connect.close();
+        }
+    }
+
+    /**
+     * Оновлення даних про користувача
+     * @param aUser
+     * @throws SQLException
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
+    public void updateUser (User aUser) throws SQLException, IOException, ClassNotFoundException {
+        PreparedStatement stat;
+        final String updateQuery =
+                "UPDATE \"Users\" set login = ?, password = ?, last_name = ?, first_name = ?," +
+                        "position = ?, access_level = ? "
+                        + "where id = ?";
+
+        Connection connect = getConnectionToDB();
+
+        try {
+            stat = connect.prepareStatement(updateQuery);
+            stat.setString(1, aUser.getLogin());
+            stat.setString(2, aUser.getPassword());
+            stat.setString(3, aUser.getLastName());
+            stat.setString(4, aUser.getFirstName());
+            stat.setString(5, aUser.getPosition());
+            stat.setInt(6, aUser.getAccessLevel());
+            stat.setInt(7, aUser.getId());
+
+            stat.executeUpdate();
+            connect.commit();
+            stat.close();
+        }
+        catch (SQLException e) {
+            connect.rollback();
+            throw e;
+        }
+        finally {
+            if (connect != null)
+                connect.close();
+        }
+    }
+
+    /**
+     * Видалення користувача
+     * @param id
+     * @throws SQLException
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
+    public void deleteUser(int id) throws SQLException, IOException, ClassNotFoundException {
+        PreparedStatement stat;
+        final String deleteQuery = "DELETE from \"Users\" where id = ?";
+
+        Connection connect = getConnectionToDB();
+
+        try {
+            stat = connect.prepareStatement(deleteQuery);
+            stat.setInt(1, id);
+
+            stat.executeUpdate();
+            connect.commit();
+            stat.close();
+        }
+        catch (SQLException e) {
+            connect.rollback();
+        }
+        finally {
+            if (connect != null)
+                connect.close();
+        }
+    }
+
+    /**
+     * Отримуємо юзера за id для редагування
+     * @param aId
+     * @return
+     * @throws SQLException
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
+    public User getUser (int aId) throws SQLException, IOException, ClassNotFoundException {
+        User oneUser = null;
+
+        PreparedStatement stat;
+        final String filterQuery = "SELECT * FROM \"Users\" WHERE id = ?";
+
+        Connection connect = getConnectionToDB();
+
+        try {
+            stat = connect.prepareStatement(filterQuery);
+            stat.setInt(1, aId);
+
+            ResultSet rs = stat.executeQuery();
+
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String login = rs.getString("login");
+                String password = rs.getString("password");
+                String lastName = rs.getString("last_name");
+                String firstName = rs.getString("first_name");
+                String position = rs.getString("position");
+                int accessLevel = rs.getInt("access_level");
+
+                oneUser = new User(id, login, password, lastName, firstName,
+                        position, accessLevel);
+            }
+
+            rs.close();
+            stat.close();
+        }
+        finally {
+            if (connect != null)
+                connect.close();
+        }
+
+        return oneUser;
     }
 }

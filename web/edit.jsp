@@ -10,14 +10,14 @@
 <html>
 <head>
     <title>Редагування</title>
-    <link href="bootstrap/css/footer_social.css" rel="stylesheet">
-    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="design/css/margin-top.css" rel="stylesheet">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
     <script src="bootstrap/js/bootstrap.min.js"></script>
-    <script src="bootstrap/js/hideButton.js"></script>
+    <script src="design/js/hideButton.js"></script>
 </head>
 <body>
 <div class="container">
@@ -48,12 +48,14 @@
         </div>
         <div class="panel-footer clearfix">
             <div class="pull-left">
-                <button id="save" type="submit" class="btn btn-primary" formaction="add">Зберегти</button>
-                <button id="update" type="submit" class="btn btn-info" formaction="update">Оновити</button>
+                <button id="save" type="submit" class="btn btn-primary" formaction="add">
+                    <span class="glyphicon glyphicon-floppy-disk"></span> Зберегти</button>
+                <button id="update" type="submit" class="btn btn-info" formaction="update">
+                    <span class="glyphicon glyphicon-floppy-disk"></span> Оновити</button>
             </div>
         </div>
         </form>
     </div>
 </div>
 
-<c:import url="footer.jsp"/>
+<c:import url="tools/footer.jsp"/>

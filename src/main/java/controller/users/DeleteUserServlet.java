@@ -1,0 +1,49 @@
+package controller.users;
+
+import tools.DBManager;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.sql.SQLException;
+
+/**
+ * Created by snooki on 19.05.16.
+ */
+public class DeleteUserServlet extends HttpServlet {
+
+    private final DBManager INSTANCE_DB_MANAGER = DBManager.getInstance();
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+    }
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String url = "/users";
+
+        int id = Integer.parseInt(request.getParameter("id"));
+
+        if (id == 0) {
+            url = "/users";
+        }
+        else {
+            if (id > 0) {
+                try {
+                    INSTANCE_DB_MANAGER.deleteUser(id);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                    url = "/error/error_java";
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                    url = "/error/error_java";
+                }
+            } else {
+                url = "/error/error_java";
+            }
+        }
+
+        getServletContext().getRequestDispatcher(url).forward(request, response);
+    }
+}

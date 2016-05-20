@@ -5,6 +5,9 @@
   Time: 23:58
   To change this template use File | Settings | File Templates.
 --%>
+<link href="../design/css/footer_social.css" rel="stylesheet">
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+
 <div class="row">
     <div class="col-xs-12">
         <footer>

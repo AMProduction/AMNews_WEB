@@ -9,13 +9,13 @@
 <html>
 <head>
     <title>AMNews</title>
-    <link href="bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
-    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="bootstrap/css/contact.css" rel="stylesheet">
+    <link href="../bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../design/css/contact.css" rel="stylesheet">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-1.12.2.js"></script>
-    <script src="bootstrap/js/bootstrap.js"></script>
+    <script src="../bootstrap/js/bootstrap.js"></script>
 </head>
 <body>
 <div class="jumbotron jumbotron-sm">
