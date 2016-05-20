@@ -23,14 +23,20 @@ public class RequestAdminPrivilegesFilter implements Filter {
 
         HttpSession session = request.getSession();
 
-        Integer adminPrivileges = Integer.parseInt(session.getAttribute("adminPrivileges").toString());
-        if (adminPrivileges != null){
-            if (adminPrivileges != 1){
-                response.sendRedirect("/error/error_401.jsp");
+        if (session.getAttribute("adminPrivileges") != null) {
+            Integer adminPrivileges = Integer.parseInt(session.getAttribute("adminPrivileges").toString());
+            if (adminPrivileges != null) {
+                if (adminPrivileges != 1) {
+                    response.sendRedirect("/error/error_401.jsp");
+                } else {
+                    chain.doFilter(request, resp);
+                }
+            } else {
+                response.sendRedirect("/error/error_404.jsp");
             }
-            else{
-                chain.doFilter(request, resp);
-            }
+        }
+        else {
+            response.sendRedirect("/error/error_404.jsp");
         }
     }
 

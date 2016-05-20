@@ -3,6 +3,9 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
+
+    <display-name>AMNews</display-name>
+
     <filter>
         <filter-name>RequestAdminPrivilegesFilter</filter-name>
         <filter-class>controller.RequestAdminPrivilegesFilter</filter-class>
@@ -139,6 +142,11 @@
     </error-page>
 
     <error-page>
+        <error-code>401</error-code>
+        <location>/error/error_401.jsp</location>
+    </error-page>
+
+    <error-page>
         <exception-type>java.lang.Throwable</exception-type>
         <location>/error/error_java.jsp</location>
     </error-page>
@@ -150,4 +158,5 @@
     <welcome-file-list>
         <welcome-file>login.jsp</welcome-file>
     </welcome-file-list>
+
 </web-app>

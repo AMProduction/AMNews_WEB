@@ -39,12 +39,17 @@
         </div>
         <div id="navbarCollapse" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="edit.jsp?hideUpdate=1&hideSave=0">
-                    <span class="glyphicon glyphicon-plus"></span> Додати</a></li>
-                <li><a class="edit_item" href="#">
-                    <span class="glyphicon glyphicon-pencil"></span> Редагувати</a></li>
-                <li><a class="delete_item" href="#">
-                    <span class="glyphicon glyphicon-trash"></span> Видалити</a></li>
+                <li class="dropdown">
+                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">Новини<b class="caret"></b></a>
+                    <ul role="menu" class="dropdown-menu">
+                        <li><a href="edit.jsp?hideUpdate=1&hideSave=0">
+                            <span class="glyphicon glyphicon-plus"></span> Додати</a></li>
+                        <li><a class="edit_item" href="#">
+                            <span class="glyphicon glyphicon-pencil"></span> Редагувати</a></li>
+                        <li><a class="delete_item" href="#">
+                            <span class="glyphicon glyphicon-trash"></span> Видалити</a></li>
+                    </ul>
+                </li>
                 <li><a href="tools/contact.jsp">
                     <span class="glyphicon glyphicon-envelope"></span> Контакти</a></li>
                 <li><a href="/users">
