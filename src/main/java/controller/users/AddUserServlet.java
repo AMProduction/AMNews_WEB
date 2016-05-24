@@ -28,9 +28,33 @@ public class AddUserServlet extends HttpServlet {
         String login = request.getParameter("login");
         String password = request.getParameter("password");
         String position = request.getParameter("position");
-        int accessLevel = Integer.parseInt(request.getParameter("accessLevel"));
+        int accessLevel = 0;
 
-        User user = new User(login,password, lastName, firstName, position, accessLevel);
+        switch (position) {
+            case "Журналіст/редактор":
+                accessLevel = 3;
+                break;
+            case "Випусковий редактор":
+                accessLevel = 2;
+                break;
+            case "Диктор/ведучий":
+                accessLevel = 4;
+                break;
+            case "Літературний редактор":
+                accessLevel = 4;
+                break;
+            case "Продюсер":
+                accessLevel = 6;
+                break;
+            case "Режисер":
+                accessLevel = 5;
+                break;
+            case "Режисер монтажу":
+                accessLevel = 6;
+                break;
+        }
+
+        User user = new User(login, password, lastName, firstName, position, accessLevel);
 
         try {
             INSTANCE_DB_MANAGER.addUser(user);

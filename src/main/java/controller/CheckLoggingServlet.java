@@ -27,7 +27,6 @@ public class CheckLoggingServlet extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
 
         HttpSession session = request.getSession();
-        session.setAttribute("adminPrivileges", "0");
 
         if (session.isNew()){
             String login = request.getParameter("login");
@@ -46,9 +45,8 @@ public class CheckLoggingServlet extends HttpServlet {
             if (userData != null)
             {
                 session.setAttribute("userName", userData.getLastName()+ " " + userData.getFirstName());
-                if (userData.getAccessLevel() == 1){
-                    session.setAttribute("adminPrivileges", "1");
-                }
+                int accessLevel = userData.getAccessLevel();
+                session.setAttribute("accessLevel", accessLevel);
             }
             else {
                 session.invalidate();

@@ -112,13 +112,14 @@
                                       placeholder="Рівень доступу" readonly value="${user.accessLevel}">
                         </div>
                     </div><!--Column right-->
-
                 </div>
             </div>
             <div class="panel-footer clearfix">
                 <div class="pull-left">
                     <button id="save" type="submit" class="btn btn-primary" formaction="../updateuser">
                         <span class="glyphicon glyphicon-floppy-disk"></span> Зберегти</button>
+                    <a href="/users" class="btn btn-primary">
+                        <span class="glyphicon glyphicon-arrow-left"></span> Назад</a>
                 </div>
             </div>
         </form>

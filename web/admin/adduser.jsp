@@ -31,14 +31,25 @@
         <form role = "form" method="post" id="addUserForm">
             <div class="panel-body">
                 <div class="row">
-                    <div class="col-md-4"><!--Column left-->
+                    <div class="col-sm-6"><!--Column left-->
                         <div class="form-group">
                             <label for="lastName" class="control-label">Прізвище</label>
                             <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Прізвище">
                         </div>
                         <div class="form-group">
+                            <label for="login" class="control-label">Логін</label>
+                            <input type="text" class="form-control" id="login" name="login" placeholder="Логін">
+                        </div>
+                        <div class="form-group">
                             <label for="password" class="control-label">Пароль</label>
                             <input type="password" class="form-control" id="password" name="password" placeholder="Пароль">
+                        </div>
+                    </div><!--Column left-->
+
+                    <div class="col-sm-6"><!--Column right-->
+                        <div class="form-group">
+                            <label for="firstName" class="control-label">Ім'я</label>
+                            <input type="text" class="form-control" id="firstName" name="firstName" placeholder="Ім'я">
                         </div>
                         <div class="form-group">
                             <label for="position" class="control-label">Посада</label>
@@ -53,32 +64,9 @@
                                 <option value="Режисер монтажу">Режисер монтажу</option>
                             </select>
                         </div>
-                    </div><!--Column left-->
-                    <div class="col-md-4"><!--Column middle-->
-                        <div class="form-group">
-                            <label for="firstName" class="control-label">Ім'я</label>
-                            <input type="text" class="form-control" id="firstName" name="firstName" placeholder="Ім'я">
-                        </div>
                         <div class="form-group">
                             <label for="repeatPassword" class="control-label">Введіть пароль ще раз</label>
                             <input type="password" class="form-control" id="repeatPassword" name="repeatPassword" placeholder="Введіть пароль ще раз">
-                        </div>
-                        <div class="form-group">
-                            <label for="accessLevel" class="control-label">Рівень доступу</label>
-                            <select class="form-control" name="accessLevel" id="accessLevel">
-                                <option value="">Виберіть рівень доступу</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                                <option value="6">6</option>
-                            </select>
-                        </div>
-                    </div><!--Column middle-->
-                    <div class="col-md-4"><!--Column right-->
-                        <div class="form-group">
-                            <label for="login" class="control-label">Логін</label>
-                            <input type="text" class="form-control" id="login" name="login" placeholder="Логін">
                         </div>
                     </div><!--Column right-->
                 </div>
@@ -87,6 +75,8 @@
                 <div class="pull-left">
                     <button id="save" type="submit" class="btn btn-primary" formaction="../adduser">
                         <span class="glyphicon glyphicon-floppy-disk"></span> Зберегти</button>
+                    <a href="/users" class="btn btn-primary">
+                        <span class="glyphicon glyphicon-arrow-left"></span> Назад</a>
                 </div>
             </div>
         </form>

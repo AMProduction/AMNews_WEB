@@ -52,6 +52,8 @@
                     <span class="glyphicon glyphicon-floppy-disk"></span> Зберегти</button>
                 <button id="update" type="submit" class="btn btn-info" formaction="update">
                     <span class="glyphicon glyphicon-floppy-disk"></span> Оновити</button>
+                <a href="/show" class="btn btn-primary">
+                    <span class="glyphicon glyphicon-arrow-left"></span> Назад</a>
             </div>
         </div>
         </form>

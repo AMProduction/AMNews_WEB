@@ -38,10 +38,6 @@ $(document).ready(function() {
             position: {
                 required: true,
             },
-
-            accessLevel: {
-                required: true,
-            },
         },
 
         messages:{
@@ -75,10 +71,6 @@ $(document).ready(function() {
             },
 
             position:{
-                required: "Поле обов'язкове для заповнення",
-            },
-
-            accessLevel:{
                 required: "Поле обов'язкове для заповнення",
             },
         }

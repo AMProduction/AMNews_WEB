@@ -40,7 +40,8 @@
         <div id="navbarCollapse" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 <li class="dropdown">
-                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">Новини<b class="caret"></b></a>
+                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                        <span class="glyphicon glyphicon-globe"></span> Новини<b class="caret"></b></a>
                     <ul role="menu" class="dropdown-menu">
                         <li><a href="edit.jsp?hideUpdate=1&hideSave=0">
                             <span class="glyphicon glyphicon-plus"></span> Додати</a></li>
@@ -64,24 +65,35 @@
 </nav>
 
 <div class="container">
-    <div class="jumbotron">
-        <div class="panel panel-primary filterable">
-            <div class="panel-heading">
-                <h3 class="panel-title">Вас вітає система верстки новин AMNews</h3>
-                <div class="pull-right">
-                    <button class="btn btn-default btn-xs btn-filter"><span class="glyphicon glyphicon-filter"></span> Пошук</button>
+    <div class="row">
+        <div class="col-md-2 well well-sm">
+            <ul class="nav nav-pills nav-stacked">
+                <li><a href="edit.jsp?hideUpdate=1&hideSave=0">
+                    <span class="glyphicon glyphicon-plus"></span> Додати</a></li>
+                <li><a class="edit_item" href="#">
+                    <span class="glyphicon glyphicon-pencil"></span> Редагувати</a></li>
+                <li><a class="delete_item" href="#">
+                    <span class="glyphicon glyphicon-trash"></span> Видалити</a></li>
+            </ul>
+        </div>
+        <div class="col-md-10">
+            <div class="panel panel-primary filterable">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Вас вітає система верстки новин AMNews</h3>
+                    <div class="pull-right">
+                        <button class="btn btn-default btn-xs btn-filter"><span class="glyphicon glyphicon-filter"></span> Пошук</button>
+                    </div>
                 </div>
-            </div>
-            <table id="newsTable" class="table table-hover table-condensed">
-                <thead class="filters">
-                <tr>
-                    <th><input type="text" class="form-control" placeholder="№" disabled></th>
-                    <th><input type="text" class="form-control" placeholder="Тема" disabled></th>
-                    <th><input type="text" class="form-control" placeholder="Востаннє змінено" disabled></th>
-                    <th><input type="text" class="form-control" placeholder="Автор" disabled></th>
-                </tr>
-                </thead>
-                <tbody>
+                <table id="newsTable" class="table table-hover table-condensed">
+                    <thead class="filters">
+                    <tr>
+                        <th><input type="text" class="form-control" placeholder="№" disabled></th>
+                        <th><input type="text" class="form-control" placeholder="Тема" disabled></th>
+                        <th><input type="text" class="form-control" placeholder="Востаннє змінено" disabled></th>
+                        <th><input type="text" class="form-control" placeholder="Автор" disabled></th>
+                    </tr>
+                    </thead>
+                    <tbody>
                     <c:forEach var="news" items="${requestScope.newsData}">
                         <tr class="clickable-row" style="cursor: pointer"
                             data-toggle="tooltip" data-placement="top" title="${news.textNews}">
@@ -94,8 +106,9 @@
                             <td>${news.author}</td>
                         </tr>
                     </c:forEach>
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>
