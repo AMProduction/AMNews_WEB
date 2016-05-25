@@ -7,13 +7,23 @@
     <display-name>AMNews</display-name>
 
     <filter>
-        <filter-name>RequestAdminPrivilegesFilter</filter-name>
-        <filter-class>controller.RequestAdminPrivilegesFilter</filter-class>
+        <filter-name>RequestPrivilegesFilter</filter-name>
+        <filter-class>controller.RequestPrivilegesFilter</filter-class>
     </filter>
 
     <filter-mapping>
-            <filter-name>RequestAdminPrivilegesFilter</filter-name>
-            <url-pattern>/users</url-pattern>
+        <filter-name>RequestPrivilegesFilter</filter-name>
+        <url-pattern>/add</url-pattern>
+        <url-pattern>/adduser</url-pattern>
+        <url-pattern>/delete</url-pattern>
+        <url-pattern>/deleteuser</url-pattern>
+        <url-pattern>/edit.jsp</url-pattern>
+        <url-pattern>/edit</url-pattern>
+        <url-pattern>/edituser</url-pattern>
+        <url-pattern>/show</url-pattern>
+        <url-pattern>/users</url-pattern>
+        <url-pattern>/update</url-pattern>
+        <url-pattern>/updateusers</url-pattern>
     </filter-mapping>-->
 
     <servlet>
