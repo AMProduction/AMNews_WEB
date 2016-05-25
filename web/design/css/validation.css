@@ -1,0 +1,9 @@
+label.error {
+    background:url("../img/unchecked.gif") no-repeat 0px 0px;
+    padding-left: 16px;
+    padding-bottom: 2px;
+    color: #EA5200;
+}
+label.checked {
+    background:url("../img/checked.gif") no-repeat 0px 0px;
+}

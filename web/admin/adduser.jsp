@@ -20,6 +20,7 @@
     <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="../bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
     <link href="../design/css/margin-top.css" rel="stylesheet">
+    <link href="../design/css/validation.css" rel="stylesheet">
 </head>
 <body>
 

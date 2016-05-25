@@ -73,6 +73,10 @@ $(document).ready(function() {
             position:{
                 required: "Поле обов'язкове для заповнення",
             },
+        },
+
+        success: function(label) {
+            label.html("&nbsp;").addClass("checked");
         }
     });
 });

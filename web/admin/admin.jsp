@@ -25,15 +25,15 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-2 well well-sm">
             <ul class="nav nav-pills nav-stacked">
-                <li class="active"><a href="/show?"><i class="fa fa-fw"></i><span class="glyphicon glyphicon-home"></span> AMNews</a></li>
+                <li class="active"><a href="/show?"><i class="fa fa-fw"></i><span class="glyphicon glyphicon-home"></span> На головну</a></li>
                 <li><a href="../admin/adduser.jsp"><i class="fa fa-fw"></i><span class="glyphicon glyphicon-plus"></span> Додати користувача</a></li>
                 <li><a class="edit_user" href="#"><i class="fa fa-fw"></i><span class="glyphicon glyphicon-pencil"></span> Редагувати користувача</a></li>
                 <li><a class="delete_user" href="#"><i class="fa fa-fw"></i><span class="glyphicon glyphicon-trash"></span> Видалити користувача</a></li>
             </ul>
         </div>
-        <div class="col-md-9 well">
+        <div class="col-md-10">
             <div class="panel panel-primary">
                 <div class="panel-heading">
                     <h3 class="panel-title">Список користувачів</h3>
